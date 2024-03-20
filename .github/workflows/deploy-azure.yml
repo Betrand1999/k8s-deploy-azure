@@ -1,1 +1,26 @@
-
+name: deploy-to-aks
+on: 
+  push:
+    branches:
+      - dev-branch
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 
+      - name: Login to Azure
+        uses:  azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS}}
+      - name: Set up Kubernetes CLI
+        uses: azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS}}
+          cluster-name: my-aks-cluster
+          resource-group: my-aks-cluster_group
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f ./kubernetes/namespace.yaml
+          kubectl apply -f ./kubernetes/deployment.yaml 
+          kubectl apply -f ./kubernetes/service.yaml
