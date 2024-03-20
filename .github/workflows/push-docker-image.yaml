@@ -1,1 +1,29 @@
 
+name: build and push docker image
+on:
+ push:
+   branches:
+     - dev-branch
+jobs:
+  build:
+   runs-on: ubuntu-latest 
+   steps:
+     - name: checkout github repo 
+       uses: actions/checkout@v2
+     - name: login docker
+       uses: docker/login@v2
+       with:
+         username: -u ${{secrets.DOCKER_USERNAME}}
+         password: -p ${{secrets.DOCKER_PASSWORD}}
+     - name: build image
+       run: docker build -t myapp .
+     - name: run docker image 
+       run: docker run -d -p 5050:80 myapp
+     - name: tag image 
+       run: docker tag betrand1999:latest/myapp:latest
+     - name: push image 
+       run: docker push betrand1999:latest/myapp:latest
+
+                                
+
+     
