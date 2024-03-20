@@ -9,7 +9,7 @@ jobs:
    runs-on: ubuntu-latest 
    steps:
      - name: checkout github repo 
-       uses: checkout/actions@v2
+       uses: actions/checkout@v2
      - name: login docker
        uses: docker/login-actions@v1
        with:
