@@ -17,7 +17,7 @@ jobs:
         uses: azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS}}
-          cluster-name: ymy-aks-cluster
+          cluster-name: my-aks-cluster
           resource-group: my-aks-cluster_group
       - name: Deploy to AKS
         run: |
