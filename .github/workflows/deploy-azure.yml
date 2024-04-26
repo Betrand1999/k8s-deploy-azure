@@ -16,7 +16,8 @@ jobs:
       - name: setup azure cli
         uses: azure/aks-set-context@v1
         with:
-           creds: ${{secrets.AZURE_CREDENTIALS}}
+          resource-group: my-resource-group
+           
       - name: deploy to aks
         run: |
           kubectl apply -f ./kubernetes/namespace.yaml
