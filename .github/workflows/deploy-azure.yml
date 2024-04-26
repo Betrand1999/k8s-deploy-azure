@@ -1,4 +1,4 @@
-name: deploy to azure1
+name: deploy to azure12
 on:
   push:
     branches:
