@@ -18,7 +18,7 @@ jobs:
         with:
            creds: ${{secrets.AZURE_CREDENTIALS}}
            aks-cluster: my-aks-cluster
-           resource: my-resource-group
+           resource-group: my-resource-group
       - name: deploy to aks
         run: |
           
