@@ -1,4 +1,4 @@
-name: deploy to azure12
+name: deploy to azure
 on:
   push:
     branches:
@@ -15,15 +15,9 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - name: setup azure cli
         uses: azure/aks-set-context@v1
-        with:
-          creds: ${{secrets.AZURE_CREDENTIALS}}
-          resource-group: my-resource-group
-          cluster-name: my-aks-cluster
-           
       - name: deploy to aks
         run: |
-    
-         
+          
           kubectl apply -f ./kubernetes/deployment.yaml
           kubectl apply -f ./kubernetes/service.yaml
           kubectl apply -f ./release/kubernetes.manifest.yaml
